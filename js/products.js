@@ -1,6 +1,7 @@
 // ESM 載入 
 // Vue3 esm.cdn
 import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.9/vue.esm-browser.js';
+import pagination from './pagination.js'
 
 let productModal = {}; 
 let delProductModal = {};
@@ -17,6 +18,10 @@ const app = createApp({
       isNew: false, 
       pagination: {}, // 分頁內容
     }
+  },
+  // 區域註冊元件 components
+  components: {
+    pagination
   },
   // 取得資料以及抓到DOM元素會在 mounted 執行
   mounted() {
@@ -111,34 +116,8 @@ const app = createApp({
 
 /*-------------------定義全域的元件--------------------- */
 // 分頁元件
-app.component('pagination',{
-  props: ['page'],
-  template:`<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item" :class="{'disabled': !page.has_pre}">
-      <a class="page-link" href="#" aria-label="Previous"
-      @click.prevent="$emit('get-data', page.current_page-1)">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item" 
-    :class="{ 'active': item === page.current_page }"
-    v-for="item in page.total_pages" :key="item">
-    <a class="page-link" href="#" @click.prevent="$emit('get-data',item)">{{ item }}</a>
-    </li>
-    <li class="page-item" :class="{'disabled': !page.has_next}">
-      <a class="page-link" href="#" aria-label="Next"
-      @click.prevent="$emit('get-data', page.current_page+1)">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>`,
-  // 使用生命週期來查看page的變化
-  created() {
-    console.log(this.page);
-  }
-})
+//app.component('pagination',) //元件封裝後 改為區域註冊 import pagination
+
 // 新增/編輯產品元件
 app.component('productModal',{
 
