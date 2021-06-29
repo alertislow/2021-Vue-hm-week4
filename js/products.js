@@ -136,8 +136,8 @@ app.component('productModal',{
             <!-- 單圖新增 -->
             <div class="form-group">
               <label for="imageUrl">主要圖片</label>
-              <input type="text" class="form-control" placeholder="請輸入圖片連結">
-              <img class="img-fluid" >
+              <input type="text" class="form-control" placeholder="請輸入圖片連結" v-model="tempProduct.imageUrl" id="imageUrl">
+              <img class="img-fluid" :src="tempProduct.imageUrl">
             </div>
             <!-- 多圖新增 -->
             <div class="mb-1">多圖新增</div>
